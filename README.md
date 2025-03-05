@@ -34,3 +34,16 @@ mix run --no-halt
       { "name": "task-4", "command": "rm /tmp/file1", "requires": ["task-2", "task-3"] }
     ]
   }
+
+#### Response:  
+- **Status code:** `200 OK`
+- **Body:**  
+```json
+  {
+  "tasks": [
+    { "name": "task-1", "command": "touch /tmp/file1" },
+    { "name": "task-3", "command": "echo 'Hello World!' > /tmp/file1" },
+    { "name": "task-2", "command": "cat /tmp/file1" },
+    { "name": "task-4", "command": "rm /tmp/file1" }
+  ]
+}
