@@ -20,16 +20,6 @@ defmodule JobService.Helper do
 
     {start_tasks, rest_tasks} =
       tasks
-      |> Enum.map(fn task ->
-        task
-        |> Map.put("requires",
-          task["requires"]
-          |> List.wrap()
-          |> Enum.reject(fn task ->
-            task not in (tasks |> Enum.map(& &1["name"]))
-          end)
-        )
-      end)
       |> Enum.split_with(& is_nil(&1["requires"]) || length(&1["requires"]) == 0)
 
     start_tasks =

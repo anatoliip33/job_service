@@ -124,7 +124,7 @@ defmodule JobServiceTest do
       |> Router.call(@opts)
 
     assert conn.status == 200
-    assert Jason.decode!(conn.resp_body)["tasks"] |> Enum.map(& &1["name"]) == ["task-5", "task-2", "task-3", "task-4"]
+    assert Jason.decode!(conn.resp_body)["tasks"] |> List.first() |> Map.get("command") == "Bad arguments (infinite loop)"
   end
 
   test "POST /jobs returns sorted tasks in JSON (separete task)" do
